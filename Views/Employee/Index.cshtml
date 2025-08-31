@@ -1,0 +1,42 @@
+﻿@model List<SmartHRIS.Models.Employee>
+@{
+    ViewData["Title"] = "All Employees";
+}
+<h2>All Employees</h2>
+<hr />
+@if (TempData["ok"] != null)
+{
+     //var sha =  @ViewBag.Shabuj;
+    <div class="alert alert-success">@ViewBag.ok</div>
+}
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>ZipCode</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.EmployeeId</td>
+                <td>@emp.Name</td>
+                <td>@emp.Email</td>
+                <td>@emp.PhoneNumber</td>
+                <td>@emp.City</td>
+                <td>@emp.Country</td>
+                <td>@emp.ZipCode</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-secondary" href="/Home/Index">Back to Dashboard</a>

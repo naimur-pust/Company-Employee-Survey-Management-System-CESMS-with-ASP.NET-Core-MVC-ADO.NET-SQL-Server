@@ -1,0 +1,22 @@
+﻿@model SmartHRIS.Models.Employee
+@{
+    ViewData["Title"] = "Delete Employee";
+}
+<h2>Confirm Delete</h2>
+<hr />
+<p>Are you sure you want to delete the following employee?</p>
+
+<ul>
+    <li><b>Name:</b> @Model.Name</li>
+    <li><b>Email:</b> @Model.Email</li>
+    <li><b>Phone Number:</b> @Model.PhoneNumber</li>
+    <li><b>City:</b> @Model.City</li>
+    <li><b>Country:</b> @Model.Country</li>
+    <li><b>ZipCode:</b> @Model.ZipCode</li>
+</ul>
+
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" name="phone" value="@Model.PhoneNumber" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-secondary" href="/Home/Index">Cancel</a>
+</form>

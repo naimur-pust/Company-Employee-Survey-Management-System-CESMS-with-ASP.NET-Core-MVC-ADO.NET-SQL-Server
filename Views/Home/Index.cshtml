@@ -1,8 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Smart HRIS Dashboard";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mt-5">
+    <h1 class="display-6">Smart HRIS Dashboard</h1>
+    <p class="lead">Choose an action</p>
+    <div class="mt-4">
+        <a class="btn btn-success m-2" href="/Employee/Create">Add Employee</a>
+        <a class="btn btn-warning m-2" href="/Employee/UpdateSearch">Update Employee</a>
+        <a class="btn btn-danger  m-2" href="/Employee/DeleteSearch">Delete Employee</a>
+        <a class="btn btn-secondary m-2" href="/Employee">View All Employees</a>
+    </div>
 </div>
