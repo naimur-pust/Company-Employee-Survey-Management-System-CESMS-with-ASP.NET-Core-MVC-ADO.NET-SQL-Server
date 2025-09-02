@@ -49,12 +49,15 @@ namespace SmartHRIS.Controllers
 
         // Update Search (GET)
         [HttpGet]
-        public IActionResult UpdateSearch() => View();
+        public IActionResult UpdateSearch()
+        {
+            return View();
+        }
 
         // Update Search (POST) -> Show Edit Form
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateSearch(string phone)
+        [HttpGet]
+      //  [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(string phone)
         {
             if (string.IsNullOrWhiteSpace(phone))
             {
@@ -74,7 +77,7 @@ namespace SmartHRIS.Controllers
         // Edit (POST) -> Update
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Employee model)
+        public async Task<IActionResult> Update(Employee model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -115,12 +118,30 @@ namespace SmartHRIS.Controllers
 
         // Delete (POST)
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string phone)
+       // [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(string phone)
         {
             var rows = await _service.DeleteByPhoneAsync(phone);
             TempData["ok"] = rows > 0 ? "Deleted Successfully" : "Delete failed";
             return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        //  [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(string phone)
+        {
+            if (string.IsNullOrWhiteSpace(phone))
+            {
+                ModelState.AddModelError("", "Please enter a phone number");
+                return View();
+            }
+
+            var data = await _service.GetByPhoneAsync(phone);
+            if (data == null)
+            {
+                ModelState.AddModelError("", "No record found for this number");
+                return View();
+            }
+            return View("Details", data);
         }
     }
 }
